@@ -1,0 +1,16 @@
+name: Scheduled Heartbeat
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'  # Run every 10 minutes
+
+jobs:
+  heartbeat:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Send heartbeat request
+      run: |
+        echo "Starting scheduled heartbeat at $(date)"
+        curl -X GET https://api.kmt.ltd/api/Auth/heartbeat
+        echo "Heartbeat completed at $(date)"
