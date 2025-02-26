@@ -3,14 +3,27 @@ name: Heartbeat Service
 on:
   workflow_dispatch:  # Manual trigger
   schedule:
-    - cron: '*/2 * * * *'  # Run every 2 minutes
+    - cron: '*/10 * * * *'  # Run every 10 minutes
 
 jobs:
   heartbeat:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Send heartbeat request
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+        
+    - name: Install dependencies
       run: |
-        curl -s -X GET https://api.kmt.ltd/api/Auth/heartbeat
+        python -m pip install --upgrade pip
+        pip install requests
+        
+    - name: Send heartbeat
+      run: |
+        python heartbeat.py
         echo "Heartbeat sent at $(date)"

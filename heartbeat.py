@@ -1,5 +1,4 @@
 import requests
-import time
 import logging
 from datetime import datetime
 
@@ -27,20 +26,10 @@ def send_heartbeat():
         logging.error(f"Heartbeat error: {str(e)}")
 
 def main():
-    """Main function to run the heartbeat service."""
-    interval_seconds = 120  # 2 minutes
-    
-    logging.info("Starting heartbeat service")
-    logging.info(f"Sending heartbeat to https://api.kmt.ltd/api/Auth/heartbeat every {interval_seconds} seconds")
-    
-    try:
-        while True:
-            send_heartbeat()
-            time.sleep(interval_seconds)
-    except KeyboardInterrupt:
-        logging.info("Heartbeat service stopped by user")
-    except Exception as e:
-        logging.error(f"Unexpected error: {str(e)}")
+    """Main function to run the heartbeat service once."""
+    logging.info("Sending heartbeat")
+    send_heartbeat()
+    logging.info("Heartbeat sent")
 
 if __name__ == "__main__":
     main()
