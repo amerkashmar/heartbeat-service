@@ -12,3 +12,5 @@ jobs:
       run: |
         echo "This is a test workflow"
         echo "Current time is $(date)"
+        curl -s -X GET https://api.kmt.ltd/api/Auth/heartbeat
+        echo "Heartbeat test completed"
