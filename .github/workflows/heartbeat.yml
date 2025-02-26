@@ -3,7 +3,7 @@ name: Heartbeat Service
 on:
   workflow_dispatch:  # Manual trigger
   schedule:
-    - cron: '* * * * *'  # Run every minute (most frequent GitHub allows)
+    - cron: '*/5 * * * *'  # Run every 5 minutes
 
 jobs:
   heartbeat:
