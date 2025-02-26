@@ -3,7 +3,7 @@ name: Heartbeat Service
 on:
   workflow_dispatch:  # Manual trigger
   schedule:
-    - cron: '*/1 * * * *'  # Run every minute (GitHub doesn't support seconds)
+    - cron: '* * * * *'  # Run every minute (most frequent GitHub allows)
 
 jobs:
   heartbeat:
@@ -12,5 +12,14 @@ jobs:
     steps:
     - name: Send heartbeat request
       run: |
-        curl -X GET https://api.kmt.ltd/api/Auth/heartbeat
-        echo "Heartbeat sent at $(date)"
+        echo "Starting heartbeat at $(date)"
+        curl -v -X GET https://api.kmt.ltd/api/Auth/heartbeat
+        echo "Heartbeat completed at $(date)"
+        
+    - name: Debug information
+      run: |
+        echo "GitHub Actions runner information:"
+        echo "OS: $(uname -a)"
+        echo "Current directory: $(pwd)"
+        echo "Environment variables:"
+        env
