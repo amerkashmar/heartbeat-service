@@ -1,0 +1,4 @@
+2025-02-26 23:51:18,621 - INFO - Starting heartbeat service
+2025-02-26 23:51:18,622 - INFO - Sending heartbeat to https://api.kmt.ltd/api/Auth/heartbeat every 120 seconds
+2025-02-26 23:51:25,256 - INFO - Heartbeat successful: Status 200
+2025-02-26 23:51:35,634 - INFO - Heartbeat service stopped by user
